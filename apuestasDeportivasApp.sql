@@ -1,0 +1,3 @@
+create database apuestasDeportivasApp
+use apuestasDeportivasApp
+
