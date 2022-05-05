@@ -1,7 +1,10 @@
+/***Nos ponemos en master para poder borrar la base de datos si se creo anteriormente***/
+USE master
+GO
+DROP DATABASE apuestasDeportivasApp
+GO
 /***Creamos la base de datos***/
-create database apuestasDeportivasApp
-/***Nos ponemos en la base de datos que creamos***/
-use apuestasDeportivasApp
+CREATE DATABASE apuestasDeportivas
 
 /***Creamos las tablas necesarias con sus atributos y relaciones correspondientes***/
 create table usuarios(
@@ -64,7 +67,14 @@ create table apuestas(
 	id_TransaccionP int references transacciones(id_transaccion)
 )
 
+--Creamos una tabla para controlar los codigos de error que se puedan dar
+CREATE TABLE codigos(
+	codigo int not null,
+	descripcion varchar(255) not null
+)
+
 /***Insertamos datos***/
+--Dejamos los datos maestros, datos que son comunes
 INSERT INTO tipoTransacciones(nombre, descripcion) VALUES ('Ingreso', 'Ingreso externo')
 INSERT INTO tipoTransacciones(nombre, descripcion) VALUES ('Retirada', 'Retirada externa')
 INSERT INTO tipoTransacciones(nombre, descripcion) VALUES ('Apuesta realizada', 'Retirada interna')
@@ -72,7 +82,14 @@ INSERT INTO tipoTransacciones(nombre, descripcion) VALUES ('Apuesta ganada', 'In
 
 select * from tipoTransacciones
 
-INSERT INTO usuarios(nombre, clave, saldo) VALUES ('Pepe', '142536pepe', 400.8)
+INSERT INTO codigos(codigo, descripcion) VALUES (0, 'Correcto')
+INSERT INTO codigos(codigo, descripcion) VALUES (1, 'Usuario ya registrado')
+INSERT INTO codigos(codigo, descripcion) VALUES (2, 'Datos incorrectos')
+INSERT INTO codigos(codigo, descripcion) VALUES (3, 'Error interno')
+
+select * from codigos
+
+/*INSERT INTO usuarios(nombre, clave, saldo) VALUES ('Pepe', '142536pepe', 400.8)
 INSERT INTO usuarios(nombre, clave, saldo) VALUES ('María', '875123maria', 30)
 
 select * from usuarios
@@ -120,4 +137,4 @@ select * from opciones
 
 INSERT INTO apuestas(fecha, cantidad, multiplicador, id_usuario, id_opcion, id_TransaccionC, id_TransaccionP) VALUES ('2022-04-09T00:05:38', 25, 12, 2, 13, 2, 3)
 
-select * from apuestas
+select * from apuestas*/
