@@ -138,3 +138,296 @@ select * from opciones
 INSERT INTO apuestas(fecha, cantidad, multiplicador, id_usuario, id_opcion, id_TransaccionC, id_TransaccionP) VALUES ('2022-04-09T00:05:38', 25, 12, 2, 13, 2, 3)
 
 select * from apuestas*/
+
+/***Creamos los procedimientos***/
+/**Todo tipo de usuarios**/
+GO
+CREATE PROCEDURE registrar
+	@nombre varchar(255), @clave varchar(255)
+as
+	declare @usuario varchar(255)
+
+	select @usuario = count(*) from usuarios where nombre = @nombre
+	if @usuario > 0 --@usuario =1 para error de codigo 1
+		select * from codigos where codigo=1
+
+	else
+		begin
+			INSERT INTO usuarios(nombre, clave, saldo) values (@nombre, @clave, 0)--al registrarse tienen saldo = 0
+			select * from codigos where codigo = 0
+		end
+
+exec registrar 'Rocio', 'abcde1'
+select * from usuarios
+
+GO
+CREATE PROCEDURE logear
+	@nombre varchar(255), @clave varchar(255)
+as
+	declare @usuario varchar(255)
+
+	select @usuario = count(*) from usuarios where nombre=@nombre and clave=@clave
+	if @usuario>1 or @usuario<1
+		select * from codigos where codigo=2
+	else
+		begin
+			select * from codigos where codigo=0
+			select id_usuario, nombre from usuarios where nombre=@nombre and clave=@clave
+		end
+
+exec logear 'Rocio', 'abcde1'
+exec logear 'pepe', 'abcdee'
+
+/**Usuarios normales**/
+GO
+CREATE PROCEDURE ingresarTransaccion
+	@cantidad decimal(10,2), @id_usuario int
+as
+	declare @saldoInicial decimal(10,2)
+	declare @saldo decimal(10,2)
+	set @saldo=0
+	begin tran
+		select @saldoInicial = saldo from usuarios where id_usuario = @id_usuario
+		insert into transacciones(fecha, saldo_inicial, cantidad, id_usuario, id_tipoTransaccion) values (GETDATE(), @saldoInicial, @cantidad, @id_usuario, 1)
+		set @saldo=@saldoInicial+@cantidad
+		update usuarios set saldo=@saldo where id_usuario=@id_usuario
+
+	if @@ERROR=0
+		begin
+			commit
+			select * from codigos where codigo=0
+		end
+	else
+		begin
+			rollback
+			select * from codigos where codigo=3
+		end
+
+exec ingresarTransaccion 50, 1
+select * from transacciones
+select * from usuarios
+
+GO
+CREATE PROCEDURE retirarTransaccion
+	@cantidad decimal(10,2), @id_usuario int
+as
+	declare @saldoInicial decimal(10,2)
+	declare @saldo decimal(10,2)
+	set @saldo=0
+	begin tran
+		select @saldoInicial=saldo from usuarios where id_usuario=@id_usuario
+		if @saldoInicial<@cantidad
+			begin
+				rollback
+				select * from codigos where codigo=2
+			end
+		else
+			begin
+				insert into transacciones(fecha, saldo_inicial, cantidad, id_usuario, id_tipoTransaccion) values (GETDATE(), @saldoInicial, @cantidad, @id_usuario, 2)
+				set @saldo=@saldoInicial-@cantidad
+				update usuarios set saldo=@saldo where id_usuario=@id_usuario
+				if @@ERROR=0
+					begin
+						commit
+						select * from codigos where codigo=0
+					end
+				else
+					begin
+						rollback
+						select * from codigos where codigo=3
+					end
+			end
+
+exec retirarTransaccion 10, 1
+select * from transacciones
+select * from usuarios
+
+GO
+CREATE PROCEDURE hacerApuesta
+	@cantidad decimal(10,2), @id_usuario int, @id_evento int, @id_opcion int
+as
+	declare @saldoInicial decimal(10,2)
+	declare @saldo decimal(10,2)
+	declare @fecha datetime
+	declare @fecha_evento datetime
+	declare @multiplicador decimal(10,2)
+	declare @id_transaccion int
+	set @saldo=0
+	set @fecha=GETDATE()
+	begin tran
+		select @saldoInicial=saldo from usuarios where id_usuario=@id_usuario
+		select @fecha_evento=fecha from eventos where id_evento = @id_evento
+		if @saldoInicial<@cantidad or @fecha_evento<@fecha
+			begin
+				rollback
+				select * from codigos where codigo=2
+			end
+		else
+			begin
+				select @multiplicador=multiplicador from opciones where id_opcion=@id_opcion
+				insert into transacciones(fecha, saldo_inicial, cantidad, id_usuario, id_tipoTransaccion) values (@fecha, @saldoInicial, @cantidad, @id_usuario, 4)
+				select @id_transaccion=@id_transaccion from transacciones where id_usuario=@id_usuario
+				insert into apuestas(fecha, cantidad, multiplicador, id_usuario, id_opcion, id_TransaccionP) values (@fecha, @cantidad, @multiplicador, @id_usuario, @id_opcion, @id_transaccion)
+				set @saldo=@saldoInicial-@cantidad
+				update usuarios set saldo=@saldo where id_usuario=@id_usuario
+
+				if @@ERROR=0
+					begin
+						commit
+						select * from codigos where codigo=0
+					end
+				else
+					begin
+						rollback
+						select * from codigos where codigo=3
+					end
+			end
+
+exec hacerApuesta 30, 1, 2, 1
+select * from apuestas
+select * from transacciones
+select * from usuarios
+
+GO
+CREATE PROCEDURE apuestaGanada
+	@id_evento int, @id_opcion int
+as
+	declare @saldoInicial decimal(10,2)
+	declare @saldo decimal(10,2)
+	declare @saldoFinal decimal(10,2)
+	declare @multiplicador decimal(10,2)
+	declare @id_transaccion int
+	declare @id_usuario int
+	declare @ganado bit
+	declare @cantidad decimal(10,2)
+
+	select @multiplicador=multiplicador from apuestas where id_opcion=@id_opcion
+	select @id_usuario=id_usuario from apuestas where id_opcion=@id_opcion
+	select @saldoInicial=saldo from usuarios where id_usuario=@id_usuario
+	select @cantidad=cantidad from apuestas where id_usuario=@id_usuario and id_opcion=@id_opcion
+
+	begin tran
+		if @multiplicador>0
+			begin
+				set @saldo=@saldoInicial*@multiplicador
+				set @saldoFinal=@cantidad*@multiplicador
+				insert into transacciones (fecha, saldo_inicial, cantidad, id_usuario, id_tipoTransaccion) values (GETDATE(), @saldoInicial, @saldoFinal, @id_usuario, 3)
+				select @id_transaccion=id_transaccion from transacciones where id_usuario=@id_usuario
+				update apuestas set ganador=1, id_TransaccionC=@id_transaccion where id_usuario=@id_usuario and id_opcion=@id_opcion
+				update opciones set ganador=1 where id_evento=@id_opcion
+				update opciones set ganador=0 where id_opcion!=@id_opcion
+				update usuarios set saldo=@saldoInicial+@cantidad where id_usuario=@id_usuario
+				commit
+				select * from codigos where codigo=0
+			end
+		else
+			select * from codigos where codigo=2
+
+exec apuestaGanada 1, 2
+select * from apuestas
+select * from usuarios
+select * from opciones
+select * from transacciones
+
+/**Administradores**/
+GO
+CREATE PROCEDURE insertarTipoEventos
+	@nombre varchar(255), @descripcion varchar(255)
+as
+	begin tran
+		insert into tipoEventos(nombre, descripcion) values (@nombre, @descripcion)
+		if @@ERROR=0
+			begin
+				commit
+				select * from codigos where codigo=0
+			end
+		else
+			begin
+				rollback
+				select * from codigos where codigo=3
+			end
+
+exec insertarTipoEventos 'Futbol', 'Clasico'
+select * from tipoEventos
+
+GO
+CREATE PROCEDURE insertarEventos
+	@nombre varchar(255), @fecha datetime, @id_tipoEvento int
+as
+	begin tran
+		insert into eventos(nombre, fecha, id_tipoEvento) values (@nombre, @fecha, @id_tipoEvento)
+		if @@ERROR=0
+			begin
+				commit
+				select * from codigos where codigo=0
+			end
+		else
+			begin
+				rollback
+				select * from codigos where codigo=3
+			end
+
+exec insertarEventos 'Futbol', '2022-05-27T21:02:00', 1
+select * from eventos
+select * from tipoEventos
+
+GO
+CREATE PROCEDURE insertarOpciones
+	@nombre varchar(255), @multiplicador decimal(10,2), @id_evento int
+as
+	begin tran
+		insert into opciones(nombre, multiplicador, id_evento) values (@nombre, @multiplicador, @id_evento)
+		if @@ERROR=0
+			begin
+				commit
+				select * from codigos where codigo=0
+			end
+		else
+			begin
+				rollback
+				select * from codigos where codigo=3
+			end
+
+exec insertarOpciones 'Madrid', 3, 1
+exec insertarOpciones 'Barça', 2, 1
+select * from eventos
+select * from opciones
+
+/**Procedimientos para mostrar datos**/
+GO
+CREATE PROCEDURE mostrarEventos
+as
+	select * from eventos
+
+exec mostrarEventos
+
+GO
+CREATE PROCEDURE mostrarTransacciones
+	@id_usuario int
+as
+	select * from transacciones where id_usuario=@id_usuario
+
+exec mostrarTransacciones 1
+
+GO
+CREATE PROCEDURE mostrarApuestas
+	@id_usuario int
+as
+	select * from apuestas where id_usuario=@id_usuario
+
+exec mostrarApuestas 1
+
+GO
+CREATE PROCEDURE mostrarOpcionesEvento
+	@id_evento int
+as
+	select * from opciones where id_evento=@id_evento
+
+exec mostrarOpcionesEvento 1
+
+GO
+CREATE PROCEDURE mostrarTipoEventos
+as
+	select * from tipoEventos
+
+exec mostrarTipoEventos
