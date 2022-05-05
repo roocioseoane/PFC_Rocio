@@ -4,7 +4,18 @@ GO
 DROP DATABASE apuestasDeportivasApp
 GO
 /***Creamos la base de datos***/
-CREATE DATABASE apuestasDeportivas
+CREATE DATABASE apuestasDeportivasApp
+
+/***Creamos el administrador***/
+GO
+create login [RocioSeoane] with password='AbCdEf84',
+default_database=[apuestasDeportivasApp]
+use[apuestasDeportivasApp]
+
+GO
+create user [RocioSeoane] for login[RocioSeoane]
+use[apuestasDeportivasApp]
+alter role[db_owner]add member[RocioSeoane]
 
 /***Creamos las tablas necesarias con sus atributos y relaciones correspondientes***/
 create table usuarios(
