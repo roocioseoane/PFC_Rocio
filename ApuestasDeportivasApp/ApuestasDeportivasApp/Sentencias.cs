@@ -50,7 +50,19 @@ namespace nombrespacio
             else
                 return int.Parse(dr[0].ToString());
         }
+        public void ingresoTransccion(int id_usuario)
+        {
+            Console.WriteLine("Ingreso saldo");
+            Console.WriteLine("Cantidad a ingresar: ");
+            String cantidad = Console.ReadLine();
+            decimal _cantidad = Convert.ToDecimal(cantidad);
 
+            dt = conexion.ejecutarConsulta("exec ingresarTransaccion "+cantidad+","+id_usuario);
+
+            dr = dt.Rows[0];
+
+            Console.WriteLine(dr[1].ToString());
+        }
     }
 
 }
