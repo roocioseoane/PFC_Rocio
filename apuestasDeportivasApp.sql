@@ -178,13 +178,13 @@ as
 	declare @usuario varchar(255)
 
 	select @usuario = count(*) from usuarios where nombre=@nombre and clave=@clave
-	if @usuario>1 or @usuario<1
-		select * from codigos where codigo=2
-	else
-		begin
-			select * from codigos where codigo=0
+	--if @usuario>1 or @usuario<1
+	--	select * from codigos where codigo=2
+	--else
+	--	begin
+	--		select * from codigos where codigo=0
 			select id_usuario, nombre from usuarios where nombre=@nombre and clave=@clave
-		end
+	--	end
 
 exec logear 'Rocio', 'abcde1'
 exec logear 'pepe', 'abcdee'
