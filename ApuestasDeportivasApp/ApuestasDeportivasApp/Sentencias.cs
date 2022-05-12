@@ -84,6 +84,12 @@ namespace nombrespacio
 
             mostrarEventos();
 
+            Console.WriteLine("Id del evento: ");
+            String id_evento = Console.ReadLine();
+            int _id_evento = Convert.ToInt32(id_evento);
+
+            mostrarOpcionesEvento(_id_evento);
+
         }
         public void mostrarEventos()
         {
@@ -93,7 +99,13 @@ namespace nombrespacio
 
             Console.WriteLine(dr[0].ToString());
         }
+        public void mostrarOpcionesEvento(int id_evento)
+        {
+            dt = conexion.ejecutarConsulta("exec mostrarOpcionesEvento " + id_evento);
 
+            dr = dt.Rows[0];
+            Console.WriteLine(dr[0].ToString());
+        }
     }
 
 }
