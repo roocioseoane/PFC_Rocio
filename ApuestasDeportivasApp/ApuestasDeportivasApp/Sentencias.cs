@@ -50,6 +50,7 @@ namespace nombrespacio
             else
                 return int.Parse(dr[0].ToString());
         }
+
         public void ingresoTransccion(int id_usuario)
         {
             Console.WriteLine("Ingreso saldo");
@@ -63,6 +64,7 @@ namespace nombrespacio
 
             Console.WriteLine(dr[1].ToString());
         }
+
         public void retiroTransaccion(int id_usuario)
         {
             Console.WriteLine("Retiro saldo");
@@ -75,6 +77,7 @@ namespace nombrespacio
             dr=dt.Rows[0];
             Console.WriteLine (dr[1].ToString());
         }
+
         public void hacerApuesta(int id_usuario)
         {
             Console.WriteLine("Hacer apuesta");
@@ -104,6 +107,7 @@ namespace nombrespacio
             else
                 Console.WriteLine("Cantidad de saldo insuficiente");
         }
+
         public void apuestaGanada()
         {
             mostrarEventos();
@@ -123,10 +127,23 @@ namespace nombrespacio
             dr = dt.Rows[0];
             Console.WriteLine(dr[1].ToString());
         }
+
         public void insertarTipoEventos()
         {
             mostrarTipoEventos();
+
+            Console.WriteLine("Insertar tipo eventos");
+            Console.WriteLine("Nombre del tipo del evento: ");
+            String nombre = Console.ReadLine();
+            Console.WriteLine("Descripción del evento: ");
+            String descripcion = Console.ReadLine();
+
+            dt = conexion.ejecutarConsulta("exec insertarTipoEventos " + "'" + nombre + "','" + descripcion + "'");
+
+            dr = dt.Rows[0];
+            Console.WriteLine(dr[1].ToString());
         }
+
         public void mostrarEventos()
         {
             dt = conexion.ejecutarConsulta("exec mostrarEventos");
@@ -135,6 +152,7 @@ namespace nombrespacio
 
             Console.WriteLine(dr[0].ToString());
         }
+
         public void mostrarOpcionesEvento(int id_evento)
         {
             dt = conexion.ejecutarConsulta("exec mostrarOpcionesEvento " + id_evento);
@@ -142,6 +160,7 @@ namespace nombrespacio
             dr = dt.Rows[0];
             Console.WriteLine(dr[0].ToString());
         }
+
         public void mostrarTipoEventos()
         {
             dt = conexion.ejecutarConsulta("exec mostrarTipoEventos");
