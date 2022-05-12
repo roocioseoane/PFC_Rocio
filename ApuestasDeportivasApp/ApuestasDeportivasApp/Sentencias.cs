@@ -63,6 +63,19 @@ namespace nombrespacio
 
             Console.WriteLine(dr[1].ToString());
         }
+        public void retiroTransaccion(int id_usuario)
+        {
+            Console.WriteLine("Retiro saldo");
+            Console.WriteLine("Cantidad a retirar: ");
+            String cantidad = Console.ReadLine();
+            decimal _cantidad = Convert.ToDecimal(cantidad);
+
+            dt = conexion.ejecutarConsulta("exec retirarTransaccion " + _cantidad + "," + id_usuario);
+
+            dr=dt.Rows[0];
+            Console.WriteLine (dr[1].ToString());
+        }
+
     }
 
 }
