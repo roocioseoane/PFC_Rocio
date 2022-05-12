@@ -214,5 +214,13 @@ namespace nombrespacio
             dr = dt.Rows[0];
             Console.WriteLine(dr[0].ToString());
         }
+
+        public void mostrarTransacciones(int id_usuario)
+        {
+            dt = conexion.ejecutarConsulta("exec mostrarTransacciones " + id_usuario);
+
+            dr = dt.Rows[0];
+            Console.WriteLine(dr[0].ToString());
+        }
     }
 }
