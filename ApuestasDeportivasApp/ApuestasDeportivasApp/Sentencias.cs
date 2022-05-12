@@ -168,6 +168,28 @@ namespace nombrespacio
             Console.WriteLine(dr[1].ToString());
         }
 
+        public void insertarOpciones()
+        {
+            Console.WriteLine("Insertar opciones");
+            Console.WriteLine("Nombre de la opción: ");
+            String nombre = Console.ReadLine();
+
+            Console.WriteLine("Multiplicador de la opción: ");
+            String multiplicador = Console.ReadLine();
+            decimal _multiplicador = Convert.ToDecimal(multiplicador);
+
+            mostrarEventos();
+
+            Console.WriteLine("Id del evento: ");
+            String id_evento = Console.ReadLine();
+            int _id_evento = Convert.ToInt32(id_evento);
+
+            dt = conexion.ejecutarConsulta("exec insertarOpciones " + "'" + nombre + "'," + _multiplicador + _id_evento);
+
+            dr = dt.Rows[0];
+            Console.WriteLine(dr[1].ToString());
+        }
+
         public void mostrarEventos()
         {
             dt = conexion.ejecutarConsulta("exec mostrarEventos");
@@ -193,5 +215,4 @@ namespace nombrespacio
             Console.WriteLine(dr[0].ToString());
         }
     }
-
 }
