@@ -144,6 +144,30 @@ namespace nombrespacio
             Console.WriteLine(dr[1].ToString());
         }
 
+        public void insertarEventos()
+        {
+            mostrarEventos();
+
+            Console.WriteLine("Insertar eventos");
+            Console.WriteLine("Nombre del evento: ");
+            String nombre = Console.ReadLine();
+
+            Console.WriteLine("Fecha del evento (Formato: AA-MM-DD HH:MM:SS)");
+            String fecha =Console.ReadLine();
+            DateTime _fecha = Convert.ToDateTime(fecha);
+
+            mostrarTipoEventos();
+
+            Console.WriteLine("Id del tipo del evento: ");
+            String id_tipoEvento = Console.ReadLine();
+            int _id_tipoEvento = Convert.ToInt32(id_tipoEvento);
+
+            dt = conexion.ejecutarConsulta("exec insertarEventos " + "'" + nombre + "','" + _fecha + "'," + _id_tipoEvento);
+
+            dr = dt.Rows[0];
+            Console.WriteLine(dr[1].ToString());
+        }
+
         public void mostrarEventos()
         {
             dt = conexion.ejecutarConsulta("exec mostrarEventos");
