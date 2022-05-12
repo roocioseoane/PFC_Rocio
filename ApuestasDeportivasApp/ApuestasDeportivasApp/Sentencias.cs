@@ -90,6 +90,19 @@ namespace nombrespacio
 
             mostrarOpcionesEvento(_id_evento);
 
+            Console.WriteLine("Id de la opción a la que quieres apostar: ");
+            String id_opcion = Console.ReadLine();
+            int _id_opcion = Convert.ToInt32(id_opcion);
+
+            dt = conexion.ejecutarConsulta("exec hacerApuesta " + _cantidad + "," + id_usuario + "," + _id_evento + "," + _id_opcion);
+            dr = dt.Rows[0];
+
+            if (int.Parse(dr[0].ToString()) == 0)
+            {
+                Console.WriteLine("Apuesta realizada correctamente");
+            }
+            else
+                Console.WriteLine("Cantidad de saldo insuficiente");
         }
         public void mostrarEventos()
         {
