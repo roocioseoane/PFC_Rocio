@@ -75,6 +75,24 @@ namespace nombrespacio
             dr=dt.Rows[0];
             Console.WriteLine (dr[1].ToString());
         }
+        public void hacerApuesta(int id_usuario)
+        {
+            Console.WriteLine("Hacer apuesta");
+            Console.WriteLine("Cantidad a apostar: ");
+            String cantidad = Console.ReadLine();
+            decimal _cantidad = Convert.ToDecimal(cantidad);
+
+            mostrarEventos();
+
+        }
+        public void mostrarEventos()
+        {
+            dt = conexion.ejecutarConsulta("exec mostrarEventos");
+
+            dr = dt.Rows[0];
+
+            Console.WriteLine(dr[0].ToString());
+        }
 
     }
 
