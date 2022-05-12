@@ -104,6 +104,25 @@ namespace nombrespacio
             else
                 Console.WriteLine("Cantidad de saldo insuficiente");
         }
+        public void apuestaGanada()
+        {
+            mostrarEventos();
+
+            Console.WriteLine("Id del evento: ");
+            String id_evento = Console.ReadLine();
+            int _id_evento = Convert.ToInt32(id_evento);
+
+            mostrarOpcionesEvento(_id_evento);
+
+            Console.WriteLine("Id de la opción a la que quieres mirar: ");
+            String id_opcion = Console.ReadLine();
+            int _id_opcion = Convert.ToInt32(id_opcion);
+
+            dt = conexion.ejecutarConsulta("exec apuestaGanada " + _id_evento + "," + _id_opcion);
+
+            dr = dt.Rows[0];
+            Console.WriteLine(dr[1].ToString());
+        }
         public void mostrarEventos()
         {
             dt = conexion.ejecutarConsulta("exec mostrarEventos");
