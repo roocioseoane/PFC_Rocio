@@ -222,5 +222,13 @@ namespace nombrespacio
             dr = dt.Rows[0];
             Console.WriteLine(dr[0].ToString());
         }
+
+        public void mostrarApuestas(int id_usuario)
+        {
+            dt = conexion.ejecutarConsulta("exec mostrarApuestas " + id_usuario);
+
+            dr = dt.Rows[0];
+            Console.WriteLine(dr[0].ToString());
+        }
     }
 }
