@@ -123,6 +123,10 @@ namespace nombrespacio
             dr = dt.Rows[0];
             Console.WriteLine(dr[1].ToString());
         }
+        public void insertarTipoEventos()
+        {
+            mostrarTipoEventos();
+        }
         public void mostrarEventos()
         {
             dt = conexion.ejecutarConsulta("exec mostrarEventos");
@@ -134,6 +138,13 @@ namespace nombrespacio
         public void mostrarOpcionesEvento(int id_evento)
         {
             dt = conexion.ejecutarConsulta("exec mostrarOpcionesEvento " + id_evento);
+
+            dr = dt.Rows[0];
+            Console.WriteLine(dr[0].ToString());
+        }
+        public void mostrarTipoEventos()
+        {
+            dt = conexion.ejecutarConsulta("exec mostrarTipoEventos");
 
             dr = dt.Rows[0];
             Console.WriteLine(dr[0].ToString());
