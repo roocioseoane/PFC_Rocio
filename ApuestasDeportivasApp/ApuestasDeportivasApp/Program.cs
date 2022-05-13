@@ -60,3 +60,41 @@ int conseguirId()
     }
     return id_usuario;
 }
+
+salirDelBucle = false;
+
+while (!salirDelBucle)
+{
+    _opcion=usuarios.menu();
+
+    switch (_opcion)
+    {
+        case 0:
+            salirDelBucle=true;
+            break;
+        case 1:
+            sentencias.ingresoTransccion(id_usuario);
+            break;
+        case 2:
+            sentencias.retiroTransaccion(id_usuario);
+            break;
+        case 3:
+            sentencias.hacerApuesta(id_usuario);
+            break;
+        case 4:
+            sentencias.apuestaGanada();
+            break;
+        case 5:
+            sentencias.mostrarEventos();
+            break;
+        case 6:
+            sentencias.mostrarTransacciones(id_usuario);
+            break ;
+        case 7:
+            sentencias.mostrarApuestas(id_usuario);
+            break;
+        default:
+            Console.WriteLine("Error");
+            break;
+    }
+}

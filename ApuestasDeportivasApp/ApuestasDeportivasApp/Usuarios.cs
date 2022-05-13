@@ -32,38 +32,5 @@ namespace nombrespacio
 
             return op;
         }
-
-        public void salir()
-        {
-            return;
-        }
-        public void ingresarDinero()
-        {
-
-        }
-        public void retirarDinero()
-        {
-
-        }
-        public void realizarApuesta()
-        {
-
-        }
-        public void comprobarApuesta()
-        {
-
-        }
-        public void verEventos()
-        {
-
-        }
-        public void verTransacciones()
-        {
-
-        }
-        public void verApuestas()
-        {
-
-        }
     }
 }
