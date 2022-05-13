@@ -34,51 +34,5 @@ namespace nombrespacio
             } while (opcion < 0 || opcion > 10);
             return opcion;
         }
-        /*Opciones comunes con los usuarios normales*/
-        public void salir()
-        {
-            return;
-        }
-        public void ingresarDinero()
-        {
-
-        }
-        public void retirarDinero()
-        {
-
-        }
-        public void realizarApuesta()
-        {
-
-        }
-        public void comprobarApuesta()
-        {
-
-        }
-        public void verEventos()
-        {
-
-        }
-        public void verTransacciones()
-        {
-
-        }
-        public void verApuestas()
-        {
-
-        }
-        /*Opciones solas del administrador*/
-        public void insertarTipoEventos()
-        {
-
-        }
-        public void insertarEventos()
-        {
-
-        }
-        public void insertarOpciones()
-        {
-
-        }
     }
 }
