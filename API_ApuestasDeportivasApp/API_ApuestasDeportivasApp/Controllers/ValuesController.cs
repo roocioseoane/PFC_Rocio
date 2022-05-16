@@ -67,6 +67,14 @@ namespace API_ApuestasDeportivasApp.Controllers
             dt = conexion.ejecutarConsulta(consulta);
         }
 
+        // POST InsertarOpciones
+        [HttpPost("InsertarOpciones")]
+        public void insertarOpciones(string nombre, int multiplicador, int id_evento)
+        {
+            string consulta = $"exec insertarOpciones '{nombre}', {multiplicador}, {id_evento}";
+            DataTable dt;
+            dt = conexion.ejecutarConsulta(consulta);
+        }
 
     }
 }
