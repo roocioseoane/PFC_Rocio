@@ -29,24 +29,16 @@ namespace API_ApuestasDeportivasApp.Controllers
             dt = conexion.ejecutarConsulta(consulta);
 
             return new string[] { dt.Rows[0]["id_usuario"].ToString() };
-        }       
-
-        // POST api/<ValuesController>
-        [HttpPost]
-        public void Post([FromBody] string value)
-        {
         }
 
-        // PUT api/<ValuesController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        // POST IngresarTransaccion
+        [HttpPost("IngresoTransaccion")]
+        public void ingresarTransaccion(int cantidad, int id_usuario)
         {
+            string consulta = $"exec ingresarTransaccion {cantidad}, {id_usuario}";
+            DataTable dt;
+            dt = conexion.ejecutarConsulta(consulta);
         }
 
-        // DELETE api/<ValuesController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
     }
 }
