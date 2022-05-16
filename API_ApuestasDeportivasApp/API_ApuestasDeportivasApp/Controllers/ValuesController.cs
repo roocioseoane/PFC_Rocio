@@ -1,19 +1,26 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System.Data;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace API_ApuestasDeportivasApp.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("CasaDeApuestas")]
     [ApiController]
     public class ValuesController : ControllerBase
     {
-        // GET: api/<ValuesController>
-        [HttpGet]
-        public IEnumerable<string> Get()
+        Conexion conexion = new Conexion("localhost", "apuestasDeportivasApp", "RocioSeoane", "AbCdEf84");
+        // GET Logearse
+        [HttpGet("Logearse")]
+        public IEnumerable<string> logearse(string login, string clave)
         {
-            return new string[] { "value1", "value2" };
+            string consulta = $"exec logear '{login}', '{clave}'";
+            DataTable dt;
+            dt = conexion.ejecutarConsulta(consulta);
+
+            return new string[] { dt.Rows[0]["id_usuario"].ToString() };
         }
+
 
         // GET api/<ValuesController>/5
         [HttpGet("{id}")]

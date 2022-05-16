@@ -28,3 +28,12 @@ ApuestasDeportivasApp/ApuestasDeportivasApp/bin/Debug/net6.0/Microsoft.Data.SqlC
 *.BuildWithSkipAnalyzers
 *.pdb
 *.CopyComplete
+API_ApuestasDeportivasApp/.vs/API_ApuestasDeportivasApp/v17/.suo
+*.config
+API_ApuestasDeportivasApp/API_ApuestasDeportivasApp/obj/Debug/net6.0/API_ApuestasDeportivasApp.MvcApplicationPartsAssemblyInfo.cs
+API_ApuestasDeportivasApp/.vs/API_ApuestasDeportivasApp/v17/.suo
+API_ApuestasDeportivasApp/.vs/API_ApuestasDeportivasApp/DesignTimeBuild/.dtbcache.v2
+*.sentinel
+API_ApuestasDeportivasApp/.vs/API_ApuestasDeportivasApp/v17/.suo
+API_ApuestasDeportivasApp/API_ApuestasDeportivasApp/API_ApuestasDeportivasApp.csproj
+API_ApuestasDeportivasApp/API_ApuestasDeportivasApp/API_ApuestasDeportivasApp.csproj
