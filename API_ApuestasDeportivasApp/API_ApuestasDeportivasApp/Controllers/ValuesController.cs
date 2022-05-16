@@ -40,5 +40,14 @@ namespace API_ApuestasDeportivasApp.Controllers
             dt = conexion.ejecutarConsulta(consulta);
         }
 
+        // POST RetiroTransaccion
+        [HttpPost("RetiroTransaccion")]
+        public void retiroTransaccion(int cantidad, int id_usuario)
+        {
+            string consulta = $"exec retirarTransaccion {cantidad}, {id_usuario}";
+            DataTable dt;
+            dt = conexion.ejecutarConsulta(consulta);
+        }
+
     }
 }
