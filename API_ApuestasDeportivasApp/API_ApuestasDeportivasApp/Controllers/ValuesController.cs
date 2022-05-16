@@ -10,6 +10,16 @@ namespace API_ApuestasDeportivasApp.Controllers
     public class ValuesController : ControllerBase
     {
         Conexion conexion = new Conexion("localhost", "apuestasDeportivasApp", "RocioSeoane", "AbCdEf84");
+        
+        // POST Registrarse
+        [HttpPost("Registrarse")]
+        public void registrarse(string usuario, string clave)
+        {
+            string consulta = $"exec registrar '{usuario}', '{clave}'";
+            DataTable dt;
+            dt = conexion.ejecutarConsulta(consulta);
+        }
+
         // GET Logearse
         [HttpGet("Logearse")]
         public IEnumerable<string> logearse(string login, string clave)
@@ -19,15 +29,7 @@ namespace API_ApuestasDeportivasApp.Controllers
             dt = conexion.ejecutarConsulta(consulta);
 
             return new string[] { dt.Rows[0]["id_usuario"].ToString() };
-        }
-
-
-        // GET api/<ValuesController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
-        }
+        }       
 
         // POST api/<ValuesController>
         [HttpPost]
