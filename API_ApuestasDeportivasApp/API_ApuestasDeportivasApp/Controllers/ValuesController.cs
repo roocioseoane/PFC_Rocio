@@ -85,5 +85,14 @@ namespace API_ApuestasDeportivasApp.Controllers
             dt = conexion.ejecutarConsulta(consulta);
         }
 
+        // POST ApuestaGanada
+        [HttpPost("ApuestaGanada")]
+        public void apuestaGanada(int id_evento, int id_opcion)
+        {
+            string consulta = $"exec apuestaGanada {id_evento}, {id_opcion}";
+            DataTable dt;
+            dt = conexion.ejecutarConsulta(consulta);
+        }
+
     }
 }
