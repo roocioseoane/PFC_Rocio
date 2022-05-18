@@ -182,5 +182,23 @@ namespace API_ApuestasDeportivasApp
             return lista;
         }
 
+        // GET MostrarTipoEventos
+        [HttpGet("MostrarTipoEventos")]
+        public IEnumerable<tipoEventos> mostrarTipoEventos()
+        {
+            List<tipoEventos> lista = new List<tipoEventos>();
+            DataTable dt;
+            dt = conexion.ejecutarConsulta($"exec mostrarTipoEventos");
+
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                tipoEventos te = new tipoEventos();
+                te.id_tipoEvento = int.Parse(dt.Rows[i]["id_tipoEvento"].ToString());
+                te.nombre = dt.Rows[i]["nombre"].ToString();
+                te.descripcion = dt.Rows[i]["descripcion"].ToString();
+                lista.Add(te);
+            }
+            return lista;
+        }
     }
 }

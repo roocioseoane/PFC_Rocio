@@ -40,4 +40,11 @@
         public int id_evento { get; set; }
     }
 
+    public class tipoEventos
+    {
+        public int id_tipoEvento { get; set; }
+        public string nombre { get; set; }
+        public string? descripcion { get; set; }
+    }
+
 }
