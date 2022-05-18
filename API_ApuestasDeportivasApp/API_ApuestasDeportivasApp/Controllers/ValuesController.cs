@@ -3,7 +3,7 @@ using System.Data;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
-namespace API_ApuestasDeportivasApp.Controllers
+namespace API_ApuestasDeportivasApp
 {
     [Route("CasaDeApuestas")]
     [ApiController]
@@ -92,6 +92,26 @@ namespace API_ApuestasDeportivasApp.Controllers
             string consulta = $"exec apuestaGanada {id_evento}, {id_opcion}";
             DataTable dt;
             dt = conexion.ejecutarConsulta(consulta);
+        }
+
+        // GET MostrarEventos
+        [HttpGet("MostrarEventos")]
+        public IEnumerable<evento> mostrarEventos()
+        {
+            List<evento> lista = new List<evento>();
+            DataTable dt;
+            dt = conexion.ejecutarConsulta($"exec mostrarEventos");
+
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                evento eve = new evento();
+                eve.id_eventos = int.Parse(dt.Rows[i]["id_evento"].ToString());
+                eve.nombre = dt.Rows[i]["nombre"].ToString();
+                eve.fecha = dt.Rows[i]["fecha"].ToString();
+                eve.id_tipoEvento = int.Parse(dt.Rows[i]["id_tipoEvento"].ToString());
+                lista.Add(eve);
+            }
+            return lista;
         }
 
     }
