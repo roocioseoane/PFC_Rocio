@@ -136,7 +136,7 @@ namespace API_ApuestasDeportivasApp
             return lista;
         }
 
-        / GET MostrarApuestas
+        // GET MostrarApuestas
         [HttpGet("MostrarApuestas")]
         public IEnumerable<apuestas> mostrarApuestas(int id_usuario)
         {
@@ -161,6 +161,26 @@ namespace API_ApuestasDeportivasApp
             return lista;
         }
 
+        // GET MostrarOpcionesEvento
+        [HttpGet("MostrarOpcionesEvento")]
+        public IEnumerable<opcionesEvento> mostrarOpcionesEvento(int id_evento)
+        {
+            List<opcionesEvento> lista = new List<opcionesEvento>();
+            DataTable dt;
+            dt = conexion.ejecutarConsulta($"exec mostrarOpcionesEvento {id_evento}");
+
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                opcionesEvento oe = new opcionesEvento();
+                oe.id_opcion = int.Parse(dt.Rows[i]["id_opcion"].ToString());
+                oe.nombre = dt.Rows[i]["nombre"].ToString();
+                oe.multiplicador = int.Parse(dt.Rows[i]["multiplicador"].ToString());
+                oe.ganador = bool.Parse(dt.Rows[i]["ganador"].ToString());
+                oe.id_evento = id_evento;
+                lista.Add(oe);
+            }
+            return lista;
+        }
 
     }
 }

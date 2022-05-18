@@ -31,4 +31,13 @@
         public int id_transaccionP { get; set; }
     }
 
+    public class opcionesEvento
+    {
+        public int id_opcion { get; set; }
+        public string nombre { get; set; }
+        public int multiplicador { get; set; }
+        public bool? ganador { get; set; }
+        public int id_evento { get; set; }
+    }
+
 }
