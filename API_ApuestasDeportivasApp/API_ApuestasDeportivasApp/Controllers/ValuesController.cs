@@ -136,6 +136,31 @@ namespace API_ApuestasDeportivasApp
             return lista;
         }
 
+        / GET MostrarApuestas
+        [HttpGet("MostrarApuestas")]
+        public IEnumerable<apuestas> mostrarApuestas(int id_usuario)
+        {
+            List<apuestas> lista = new List<apuestas>();
+            DataTable dt;
+            dt = conexion.ejecutarConsulta($"exec mostrarApuestas {id_usuario}");
+
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                apuestas ap = new apuestas();
+                ap.id_apuesta = int.Parse(dt.Rows[i]["id_apuesta"].ToString());
+                ap.fecha = dt.Rows[i]["fecha"].ToString();
+                ap.cantidad = int.Parse(dt.Rows[i]["cantidad"].ToString());
+                ap.multiplicador = int.Parse(dt.Rows[i]["multiplicador"].ToString());
+                ap.ganador = bool.Parse(dt.Rows[i]["ganador"].ToString());
+                ap.id_usuario = id_usuario;
+                ap.id_opcion = int.Parse(dt.Rows[i]["id_opcion"].ToString());
+                ap.id_transaccionC = int.Parse(dt.Rows[i]["id_TransaccionC"].ToString());
+                ap.id_transaccionP = int.Parse(dt.Rows[i]["id_TransaccionP"].ToString());
+                lista.Add(ap);
+            }
+            return lista;
+        }
+
 
     }
 }

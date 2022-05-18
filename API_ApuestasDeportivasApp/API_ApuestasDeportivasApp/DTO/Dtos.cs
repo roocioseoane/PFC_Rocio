@@ -18,4 +18,17 @@
         public int id_tipoTransaccion { get; set; }
     }
 
+    public class apuestas
+    {
+        public int id_apuesta { get; set; }
+        public string fecha { get; set; }
+        public int cantidad { get; set; }
+        public int multiplicador { get; set; }
+        public bool? ganador { get; set; }
+        public int id_usuario { get; set; }
+        public int id_opcion { get; set; }
+        public int? id_transaccionC { get; set; }
+        public int id_transaccionP { get; set; }
+    }
+
 }
