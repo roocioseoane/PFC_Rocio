@@ -20,6 +20,15 @@ namespace API_ApuestasDeportivasApp
             dt = conexion.ejecutarConsulta(consulta);
         }
 
+        // POST Registrarse/web
+        [HttpPost("Registrarse/web")]
+        public void registrarseWeb([FromForm] string nombre, [FromForm] string clave)
+        {
+            string consulta = $"exec registrar '{nombre}', '{clave}'";
+            DataTable dt;
+            dt = conexion.ejecutarConsulta(consulta);
+        }
+
         // GET Logearse
         [HttpGet("Logearse")]
         public IEnumerable<string> logearse(string login, string clave)
