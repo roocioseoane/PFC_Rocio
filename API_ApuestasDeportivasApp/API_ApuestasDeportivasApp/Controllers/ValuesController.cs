@@ -139,6 +139,15 @@ namespace API_ApuestasDeportivasApp
             dt = conexion.ejecutarConsulta(consulta);
         }
 
+        // POST HacerApuesta/web
+        [HttpPost("HacerApuesta/web")]
+        public void hacerApuestaWeb([FromForm] int cantidad, [FromForm] int id_usuario, [FromForm] int id_evento, [FromForm] int id_opcion)
+        {
+            string consulta = $"exec hacerApuesta {cantidad}, {id_usuario}, {id_evento}, {id_opcion}";
+            DataTable dt;
+            dt = conexion.ejecutarConsulta(consulta);
+        }
+
         // POST ApuestaGanada
         [HttpPost("ApuestaGanada")]
         public void apuestaGanada(int id_evento, int id_opcion)
