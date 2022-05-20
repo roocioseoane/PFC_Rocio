@@ -157,6 +157,15 @@ namespace API_ApuestasDeportivasApp
             dt = conexion.ejecutarConsulta(consulta);
         }
 
+        // POST ApuestaGanada/web
+        [HttpPost("ApuestaGanada/web")]
+        public void apuestaGanadaWeb([FromForm] int id_evento, [FromForm] int id_opcion)
+        {
+            string consulta = $"exec apuestaGanada {id_evento}, {id_opcion}";
+            DataTable dt;
+            dt = conexion.ejecutarConsulta(consulta);
+        }
+
         // GET MostrarEventos
         [HttpGet("MostrarEventos")]
         public IEnumerable<evento> mostrarEventos()
