@@ -11,8 +11,6 @@ namespace nombrespacio
     class Sentencias
     {
         Conexion conexion = null;
-        DataTable dt;
-        DataRow dr;
 
         public int registrarUsuario()
         {
@@ -22,9 +20,8 @@ namespace nombrespacio
             Console.WriteLine("Introduce contraseña: ");
             String clave = Console.ReadLine();
 
-            dt = conexion.ejecutarConsulta("exec registrar '" + nombre + "'" + "'" + clave + "'");
-
-            dr = dt.Rows[0];
+            DataTable dt = conexion.ejecutarConsulta("exec registrar '" + nombre + "', '" + clave + "'");
+            DataRow dr = dt.Rows[0];
 
             Console.WriteLine(dr[0].ToString());
 
@@ -38,7 +35,7 @@ namespace nombrespacio
             Console.WriteLine("Introduce contraseña: ");
             String clave = Console.ReadLine();
 
-            dt = conexion.ejecutarConsulta("exec logear '" + nombre + "'" + "'" + clave + "'");
+            dt = conexion.ejecutarConsulta("exec logear '" + nombre + "', '" + clave + "'");
 
             dr = dt.Rows[0];
 
@@ -51,7 +48,7 @@ namespace nombrespacio
                 return int.Parse(dr[0].ToString());
         }
 
-        public void ingresoTransccion(int id_usuario)
+        public void ingresoTransaccion(int id_usuario)
         {
             Console.WriteLine("Ingreso saldo");
             Console.WriteLine("Cantidad a ingresar: ");

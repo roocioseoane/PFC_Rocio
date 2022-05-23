@@ -10,6 +10,7 @@ Admin admin = new Admin();
 bool salirDelBucle = false;
 int _opcion, id_usuario = -1;
 String opcion;
+conseguirId();
 
 int menu()
 {
@@ -38,13 +39,14 @@ int conseguirId()
             case 0:
                 salirDelBucle = true;
                 break;
-            case 1:
+            case 2:
                 if((id_usuario = sentencias.logearUsuario()) != -1)
                 {
                     salirDelBucle = true;
+                    usuario();
                 }
                 break;
-            case 2:
+            case 1:
                 if (sentencias.registrarUsuario() == 0)
                 {
                     Console.WriteLine("Registrado correctamente");
@@ -60,88 +62,43 @@ int conseguirId()
     }
     return id_usuario;
 }
-
-salirDelBucle = false;
-
-while (!salirDelBucle)
+void usuario()
 {
-    _opcion=usuarios.menu();
+    salirDelBucle = false;
 
-    switch (_opcion)
+    while (!salirDelBucle)
     {
-        case 0:
-            salirDelBucle=true;
-            break;
-        case 1:
-            sentencias.ingresoTransccion(id_usuario);
-            break;
-        case 2:
-            sentencias.retiroTransaccion(id_usuario);
-            break;
-        case 3:
-            sentencias.hacerApuesta(id_usuario);
-            break;
-        case 4:
-            sentencias.apuestaGanada();
-            break;
-        case 5:
-            sentencias.mostrarEventos();
-            break;
-        case 6:
-            sentencias.mostrarTransacciones(id_usuario);
-            break ;
-        case 7:
-            sentencias.mostrarApuestas(id_usuario);
-            break;
-        default:
-            Console.WriteLine("Error");
-            break;
-    }
-}
+        _opcion=usuarios.menu();
 
-salirDelBucle=false;
-
-while (!salirDelBucle)
-{
-    _opcion=admin.menu();
-
-    switch (_opcion)
-    {
-        case 0:
-            salirDelBucle = true;
-            break;
-        case 1:
-            sentencias.ingresoTransccion(id_usuario);
-            break;
-        case 2:
-            sentencias.retiroTransaccion(id_usuario);
-            break;
-        case 3:
-            sentencias.hacerApuesta(id_usuario);
-            break;
-        case 4:
-            sentencias.apuestaGanada();
-            break;
-        case 5:
-            sentencias.mostrarEventos();
-            break;
-        case 6:
-            sentencias.mostrarTransacciones(id_usuario);
-            break;
-        case 7:
-            sentencias.mostrarApuestas(id_usuario);
-            break;
-        case 8:
-            sentencias.insertarTipoEventos();
-            break;
-        case 9:
-            sentencias.insertarEventos();
-            break;
-        case 10:
-            sentencias.insertarOpciones();
-            break;
-        default:
-            Console.WriteLine("Error");
-            break;
+        switch (_opcion)
+        {
+            case 0:
+                salirDelBucle=true;
+                break;
+            case 1:
+                sentencias.ingresoTransaccion(id_usuario);
+                break;
+            case 2:
+                sentencias.retiroTransaccion(id_usuario);
+                break;
+            case 3:
+                sentencias.hacerApuesta(id_usuario);
+                break;
+            case 4:
+                sentencias.apuestaGanada();
+                break;
+            case 5:
+                sentencias.mostrarEventos();
+                break;
+            case 6:
+                sentencias.mostrarTransacciones(id_usuario);
+                break ;
+            case 7:
+                sentencias.mostrarApuestas(id_usuario);
+                break;
+            default:
+                Console.WriteLine("Error");
+                break;
+        }
     }
 }
