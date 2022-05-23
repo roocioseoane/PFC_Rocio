@@ -168,8 +168,8 @@ as
 			select * from codigos where codigo = 0
 		end
 
-exec registrar 'Rocio', 'abcde1'
-select * from usuarios
+/*exec registrar 'Rocio', 'abcde1'
+select * from usuarios*/
 
 GO
 CREATE PROCEDURE logear
@@ -186,8 +186,8 @@ as
 			select id_usuario, nombre from usuarios where nombre=@nombre and clave=@clave
 	--	end
 
-exec logear 'Rocio', 'abcde1'
-exec logear 'pepe', 'abcdee'
+/*exec logear 'Rocio', 'abcde1'
+exec logear 'pepe', 'abcdee'*/
 
 /**Usuarios normales**/
 GO
@@ -214,9 +214,9 @@ as
 			select * from codigos where codigo=3
 		end
 
-exec ingresarTransaccion 50, 1
+/*exec ingresarTransaccion 50, 1
 select * from transacciones
-select * from usuarios
+select * from usuarios*/
 
 GO
 CREATE PROCEDURE retirarTransaccion
@@ -249,9 +249,9 @@ as
 					end
 			end
 
-exec retirarTransaccion 10, 1
+/*exec retirarTransaccion 10, 1
 select * from transacciones
-select * from usuarios
+select * from usuarios*/
 
 GO
 CREATE PROCEDURE hacerApuesta
@@ -294,10 +294,10 @@ as
 					end
 			end
 
-exec hacerApuesta 30, 1, 2, 1
+/*exec hacerApuesta 30, 1, 2, 1
 select * from apuestas
 select * from transacciones
-select * from usuarios
+select * from usuarios*/
 
 GO
 CREATE PROCEDURE apuestaGanada
@@ -334,11 +334,11 @@ as
 		else
 			select * from codigos where codigo=2
 
-exec apuestaGanada 1, 2
+/*exec apuestaGanada 1, 2
 select * from apuestas
 select * from usuarios
 select * from opciones
-select * from transacciones
+select * from transacciones*/
 
 /**Administradores**/
 GO
@@ -378,9 +378,9 @@ as
 				select * from codigos where codigo=3
 			end
 
-exec insertarEventos 'Futbol', '2022-05-27T21:02:00', 1
+/*exec insertarEventos 'Futbol', '2022-05-27T21:02:00', 1
 select * from eventos
-select * from tipoEventos
+select * from tipoEventos*/
 
 GO
 CREATE PROCEDURE insertarOpciones
@@ -399,10 +399,10 @@ as
 				select * from codigos where codigo=3
 			end
 
-exec insertarOpciones 'Madrid', 3, 1
+/*exec insertarOpciones 'Madrid', 3, 1
 exec insertarOpciones 'Barça', 2, 1
 select * from eventos
-select * from opciones
+select * from opciones*/
 
 /**Procedimientos para mostrar datos**/
 GO
@@ -410,7 +410,7 @@ CREATE PROCEDURE mostrarEventos
 as
 	select * from eventos
 
-exec mostrarEventos
+/*exec mostrarEventos*/
 
 GO
 CREATE PROCEDURE mostrarTransacciones
@@ -418,7 +418,7 @@ CREATE PROCEDURE mostrarTransacciones
 as
 	select * from transacciones where id_usuario=@id_usuario
 
-exec mostrarTransacciones 1
+/*exec mostrarTransacciones 1*/
 
 GO
 CREATE PROCEDURE mostrarApuestas
@@ -426,7 +426,7 @@ CREATE PROCEDURE mostrarApuestas
 as
 	select * from apuestas where id_usuario=@id_usuario
 
-exec mostrarApuestas 1
+/*exec mostrarApuestas 1*/
 
 GO
 CREATE PROCEDURE mostrarOpcionesEvento
@@ -434,11 +434,11 @@ CREATE PROCEDURE mostrarOpcionesEvento
 as
 	select * from opciones where id_evento=@id_evento
 
-exec mostrarOpcionesEvento 1
+/*exec mostrarOpcionesEvento 1*/
 
 GO
 CREATE PROCEDURE mostrarTipoEventos
 as
 	select * from tipoEventos
 
-exec mostrarTipoEventos
+/*exec mostrarTipoEventos*/
