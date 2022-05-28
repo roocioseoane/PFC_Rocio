@@ -16,3 +16,9 @@ button{
     color:white;
     width: 30%;
 }
+
+
+button:hover{
+    color: rgb(243, 144, 180);
+    cursor: pointer;
+}
