@@ -1,115 +1,144 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <link href="style.css" rel="stylesheet" type="text/css">
-    </head>
-    <body>
 
-        <table>
+<head>
+    <link href="style.css" rel="stylesheet" type="text/css">
+</head>
 
-            <tbody>
+<body>
 
-                <tr>
-                    <td>
+    <table>
 
+        <tbody>
+
+            <tr>
+                <td>
+
+
+                    <div>
                         <h1>Registrarse/web</h1>
-                        <form action = "https://localhost:7020/CasaDeApuestas/Registrarse/web" method="post">
+                        <form action="https://localhost:7020/CasaDeApuestas/Registrarse/web" method="post">
                             <p>Nombre: <input type="text" name="nombre"></p>
                             <p>Clave: <input type="text" name="clave"></p>
                             <button type="submit">enviar</button>
                         </form>
+                    </div>
 
-                    </td>
 
-                    <td>
+                </td>
+
+                <td>
+
+                    <div>
                         <h1>IngresoTransaccion/web</h1>
-                        <form action = "https://localhost:7020/CasaDeApuestas/IngresoTransaccion/web" method="post">
+                        <form action="https://localhost:7020/CasaDeApuestas/IngresoTransaccion/web" method="post">
                             <p>Cantidad: <input type="text" name="cantidad"></p>
                             <p>Id_usuario: <input type="int" name="id_usuario"></p>
                             <button type="submit">enviar</button>
                         </form>
-
-                    </td>
-                </tr>
+                    </div>
 
 
+                </td>
+            </tr>
 
-                <tr>
 
-                    <td>
+
+            <tr>
+
+                <td>
+                    <div>
                         <h1>RetiroTransaccion/web</h1>
-                        <form action = "https://localhost:7020/CasaDeApuestas/RetiroTransaccion/web" method="post">
+                        <form action="https://localhost:7020/CasaDeApuestas/RetiroTransaccion/web" method="post">
                             <p>Cantidad: <input type="text" name="cantidad"></p>
                             <p>Id_usuario: <input type="int" name="id_usuario"></p>
                             <button type="submit">enviar</button>
                         </form>
-                    </td>
+                    </div>
 
-                    <td>
+                </td>
+
+                <td>
+                    <div>
                         <h1>InsertarTipoEventos/web</h1>
-                        <form action = "https://localhost:7020/CasaDeApuestas/InsertarTipoEventos/web" method="post">
+                        <form action="https://localhost:7020/CasaDeApuestas/InsertarTipoEventos/web" method="post">
                             <p>Nombre: <input type="text" name="nombre"></p>
                             <p>Descripción: <input type="text" name="descripcion"></p>
                             <button type="submit">enviar</button>
                         </form>
-                    </td>
-                </tr>
+                    </div>
+
+                </td>
+            </tr>
 
 
 
-                <tr>
+            <tr>
 
-                    <td>
+                <td>
+                    <div>
                         <h1>InsertarEventos/web</h1>
-                        <form action = "https://localhost:7020/CasaDeApuestas/InsertarEventos/web" method="post">
+                        <form action="https://localhost:7020/CasaDeApuestas/InsertarEventos/web" method="post">
                             <p>Nombre: <input type="text" name="nombre"></p>
                             <p>Fecha: <input type="text" name="fecha"></p>
                             <p>Id_tipoEvento: <input type="int" name="id_tipoEvento"></p>
                             <button type="submit">enviar</button>
                         </form>
-                    </td>
+                    </div>
 
-                    <td>
+                </td>
+
+                <td>
+                    <div>
                         <h1>InsertarOpciones/web</h1>
-                        <form action = "https://localhost:7020/CasaDeApuestas/InsertarOpciones/web" method="post">
+                        <form action="https://localhost:7020/CasaDeApuestas/InsertarOpciones/web" method="post">
                             <p>Nombre: <input type="text" name="nombre"></p>
                             <p>Multiplicador: <input type="int" name="multiplicador"></p>
                             <p>Id_evento: <input type="int" name="id_evento"></p>
                             <button type="submit">enviar</button>
                         </form>
-                    </td>
-                </tr>
+                    </div>
+
+                </td>
+            </tr>
 
 
 
-                <tr>
+            <tr>
 
-                    <td>
+                <td>
+                    <div>
                         <h1>HacerApuesta/web</h1>
-                        <form action = "https://localhost:7020/CasaDeApuestas/HacerApuesta/web" method="post">
+                        <form action="https://localhost:7020/CasaDeApuestas/HacerApuesta/web" method="post">
                             <p>Cantidad: <input type="int" name="cantidad"></p>
                             <p>Id_usuario: <input type="int" name="id_usuario"></p>
                             <p>Id_evento: <input type="int" name="id_evento"></p>
                             <p>Id_opcion: <input type="int" name="id_opcion"></p>
                             <button type="submit">enviar</button>
                         </form>
-                    </td>
+                    </div>
 
-                    <td>
+                </td>
+
+                <td>
+                    <div>
                         <h1>ApuestaGanada/web</h1>
-                        <form action = "https://localhost:7205/CasaDeApuestas/ApuestaGanada/web" method="post">
+                        <form action="https://localhost:7205/CasaDeApuestas/ApuestaGanada/web" method="post">
                             <p>Id_evento: <input type="int" name="id_evento"></p>
                             <p>Id_opcion: <input type="int" name="id_opcion"></p>
                             <button type="submit">enviar</button>
                         </form>
-                    </td>
-                </tr>
+                    </div>
 
-            </tbody>
+                </td>
+            </tr>
 
-        </table>
+        </tbody>
+
+    </table>
 
 
 
-    </body>
+</body>
+
 </html>
