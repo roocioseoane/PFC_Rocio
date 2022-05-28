@@ -3,6 +3,10 @@ td{
     padding-right: 35px;
 }
 
+body{
+    background-color: rgb(193, 214, 225);
+}
+
 table{
     margin: auto;
 }
