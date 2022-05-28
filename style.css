@@ -10,3 +10,9 @@ table{
 div{
     text-align: center;
 }
+
+button{
+    background-color: black;
+    color:white;
+    width: 30%;
+}
