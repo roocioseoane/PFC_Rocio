@@ -5,7 +5,7 @@ using System.Data;
 
 namespace API_ApuestasDeportivasApp
 {
-    [Route("CasaDeApuestas")]
+    [Route("betSports")]
     [ApiController]
     public class ValuesController : ControllerBase
     {
