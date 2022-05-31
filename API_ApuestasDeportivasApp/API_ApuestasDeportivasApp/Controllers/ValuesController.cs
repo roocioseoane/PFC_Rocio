@@ -221,13 +221,21 @@ namespace API_ApuestasDeportivasApp
                 apuestas ap = new apuestas();
                 ap.id_apuesta = int.Parse(dt.Rows[i]["id_apuesta"].ToString());
                 ap.fecha = dt.Rows[i]["fecha"].ToString();
-                ap.cantidad = int.Parse(dt.Rows[i]["cantidad"].ToString());
+                ap.cantidad = float.Parse(dt.Rows[i]["cantidad"].ToString());
                 ap.multiplicador = int.Parse(dt.Rows[i]["multiplicador"].ToString());
                 ap.ganador = bool.Parse(dt.Rows[i]["ganador"].ToString());
                 ap.id_usuario = id_usuario;
                 ap.id_opcion = int.Parse(dt.Rows[i]["id_opcion"].ToString());
                 ap.id_transaccionC = int.Parse(dt.Rows[i]["id_TransaccionC"].ToString());
-                ap.id_transaccionP = int.Parse(dt.Rows[i]["id_TransaccionP"].ToString());
+                try
+                {
+                    ap.id_transaccionP = int.Parse(dt.Rows[i]["id_TransaccionP"].ToString());
+                }
+                catch (Exception)
+                {
+                    ap.id_transaccionP = 0;
+                }
+                
                 lista.Add(ap);
             }
             return lista;

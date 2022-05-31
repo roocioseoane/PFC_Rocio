@@ -61,7 +61,7 @@ create table transacciones(
 create table opciones(
 	id_opcion int identity(1,1) primary key,
 	nombre varchar(255) not null,
-	multiplicador decimal(10,2) not null,
+	multiplicador int not null,
 	ganador bit,
 	id_evento int not null references eventos(id_evento)
 )
@@ -70,7 +70,7 @@ create table apuestas(
 	id_apuesta int identity(1,1) primary key,
 	fecha datetime not null,
 	cantidad decimal(10,2) not null,
-	multiplicador decimal(10,2) not null,
+	multiplicador int not null,
 	ganador bit,
 	id_usuario int not null references usuarios(id_usuario),
 	id_opcion int not null references opciones(id_opcion),
@@ -358,8 +358,8 @@ as
 				select * from codigos where codigo=3
 			end
 
-exec insertarTipoEventos 'Futbol', 'Clasico'
-select * from tipoEventos
+/*exec insertarTipoEventos 'Futbol', 'Clasico'
+select * from tipoEventos*/
 
 GO
 CREATE PROCEDURE insertarEventos
@@ -378,7 +378,7 @@ as
 				select * from codigos where codigo=3
 			end
 
-/*exec insertarEventos 'Futbol', '2022-05-27T21:02:00', 1
+/*exec insertarEventos 'Futbol', '2022-06-02T21:02:00', 1
 select * from eventos
 select * from tipoEventos*/
 
@@ -399,8 +399,8 @@ as
 				select * from codigos where codigo=3
 			end
 
-/*exec insertarOpciones 'Madrid', 3, 1
-exec insertarOpciones 'Barça', 2, 1
+/*exec insertarOpciones 'Madrid', 3, 2
+exec insertarOpciones 'Barça', 2, 2
 select * from eventos
 select * from opciones*/
 

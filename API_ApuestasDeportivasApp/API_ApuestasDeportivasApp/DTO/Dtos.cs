@@ -22,7 +22,7 @@
     {
         public int id_apuesta { get; set; }
         public string fecha { get; set; }
-        public int cantidad { get; set; }
+        public float cantidad { get; set; }
         public int multiplicador { get; set; }
         public bool? ganador { get; set; }
         public int id_usuario { get; set; }
