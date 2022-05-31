@@ -44,8 +44,8 @@ Por último, en la página web, el .html, introducimos datos en las celdas perti
 Pomo se puede ver arriba, en la parte de Issues, he creado varias para tener un desarrollo continuo del proyecto.
 He desarrollado el PERT y Gantt correspondientes a este proyecto, como podemos ver a continuación:
 
-- [PERT](https://raw.githubusercontent.com/roocioseoane/PFC_Rocio/main/PERT.png?token=GHSAT0AAAAAABVEQZIZTMYIGJKDUEQBDAPIYUWOPBA)
-- [Gantt](https://raw.githubusercontent.com/roocioseoane/PFC_Rocio/main/Gantt.png?token=GHSAT0AAAAAABVEQZIYTYPBQXMWWQMMZTBAYUWOPCA)
+- [PERT](https://raw.githubusercontent.com/roocioseoane/PFC_Rocio/main/PERT.png?token=GHSAT0AAAAAABVEQZIZ3LL5B462JIO4TC5WYUWO6DA)
+- [Gantt](https://raw.githubusercontent.com/roocioseoane/PFC_Rocio/main/Gantt.png?token=GHSAT0AAAAAABVEQZIYXKHAUBPQFCHWP6UUYUWO5QQ)
 
 ------------
 
