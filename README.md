@@ -55,7 +55,7 @@ He desarrollado el PERT y Gantt correspondientes a este proyecto, como podemos v
 ------------
 
 ### Conclusión
-Para tener una idea más clara y desarrollada de este proyecto, arriba visualizamos un documento PDF, en el cual podemos clickar y visualizar.
+Para tener una idea más clara y desarrollada de este proyecto, arriba podemos ver un documento PDF, en el cual podemos clickar y visualizar.
 
 ------------
 
