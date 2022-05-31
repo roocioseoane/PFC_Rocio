@@ -2,7 +2,6 @@
   betSports
 </h1>
 
-[Logo](https://raw.githubusercontent.com/roocioseoane/PFC_Rocio/main/logo.png?token=GHSAT0AAAAAABVEQZIY76TXSQURMUYZHSCMYUWOHDQ)
 El repositorio se ha creado para poder desarrollar un trabajo de fin de ciclo (Desarrollo de Aplicaciones Multiplataforma).
 Se puede clonar y examinar el código. Si los cambios se consideran oportunos, se hará merge con la rama principal.
 
