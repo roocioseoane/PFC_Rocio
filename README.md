@@ -2,6 +2,7 @@
   betSports
 </h1>
 
+[Logo](https://raw.githubusercontent.com/roocioseoane/PFC_Rocio/main/logo.png?token=GHSAT0AAAAAABVEQZIY76TXSQURMUYZHSCMYUWOHDQ)
 El repositorio se ha creado para poder desarrollar un trabajo de fin de ciclo (Desarrollo de Aplicaciones Multiplataforma).
 Se puede clonar y examinar el código. Si los cambios se consideran oportunos, se hará merge con la rama principal.
 
@@ -44,13 +45,13 @@ Por último, en la página web, el .html, introducimos datos en las celdas perti
 Pomo se puede ver arriba, en la parte de Issues, he creado varias para tener un desarrollo continuo del proyecto.
 He desarrollado el PERT y Gantt correspondientes a este proyecto, como podemos ver a continuación:
 
-- [PERT](https://raw.githubusercontent.com/roocioseoane/PFC_Rocio/main/PERT.png?token=GHSAT0AAAAAABVD6Z25SY5YYAZP3JR4YC7SYUWNCQA)
-- [Gantt](https://raw.githubusercontent.com/roocioseoane/PFC_Rocio/main/Gantt.png?token=GHSAT0AAAAAABVD6Z25JFEEO6LB2JPSP6P6YUWMJWA)
+- [PERT](https://raw.githubusercontent.com/roocioseoane/PFC_Rocio/main/PERT.png?token=GHSAT0AAAAAABVEQZIZ5FOVRUL4G6H5G4HIYUWODKA)
+- [Gantt](https://raw.githubusercontent.com/roocioseoane/PFC_Rocio/main/Gantt.png?token=GHSAT0AAAAAABVEQZIYJI2OFKGSA5YBMIV2YUWODRQ)
 
 ------------
 
 ### UML de la Base de datos
-[Modelo entidad-relación](https://raw.githubusercontent.com/roocioseoane/PFC_Rocio/main/ModeloER_BBDD.png?token=GHSAT0AAAAAABVD6Z25T5R3QBC2OV7MUGE4YUV7KSQ)
+[Modelo entidad-relación](https://raw.githubusercontent.com/roocioseoane/PFC_Rocio/main/ModeloER_BBDD.png?token=GHSAT0AAAAAABVEQZIZWIRGJL3Z3PC25YM2YUWOILQ)
 
 ------------
 
