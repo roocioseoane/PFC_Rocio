@@ -50,7 +50,7 @@ He desarrollado el PERT y Gantt correspondientes a este proyecto, como podemos v
 ------------
 
 ### UML de la Base de datos
-[modelo entidad relación]()
+[modelo entidad relación](https://raw.githubusercontent.com/roocioseoane/PFC_Rocio/main/ModeloER_BBDD.png?token=GHSAT0AAAAAABVD6Z25T5R3QBC2OV7MUGE4YUV7KSQ)
 
 ------------
 
