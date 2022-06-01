@@ -276,8 +276,8 @@ as
 		else
 			begin
 				select @multiplicador=multiplicador from opciones where id_opcion=@id_opcion
-				insert into transacciones(fecha, saldo_inicial, cantidad, id_usuario, id_tipoTransaccion) values (@fecha, @saldoInicial, @cantidad, @id_usuario, 4)
-				select @id_transaccion=@id_transaccion from transacciones where id_usuario=@id_usuario
+				insert into transacciones(fecha, saldo_inicial, cantidad, id_usuario, id_tipoTransaccion) values (@fecha, @saldoInicial, @cantidad, @id_usuario, 3)
+				select @id_transaccion=id_transaccion from transacciones where id_usuario=@id_usuario
 				insert into apuestas(fecha, cantidad, multiplicador, id_usuario, id_opcion, id_TransaccionP) values (@fecha, @cantidad, @multiplicador, @id_usuario, @id_opcion, @id_transaccion)
 				set @saldo=@saldoInicial-@cantidad
 				update usuarios set saldo=@saldo where id_usuario=@id_usuario
@@ -294,7 +294,7 @@ as
 					end
 			end
 
-/*exec hacerApuesta 30, 1, 2, 1
+/*exec hacerApuesta 10, 1, 2, 1
 select * from apuestas
 select * from transacciones
 select * from usuarios*/
@@ -322,7 +322,7 @@ as
 			begin
 				set @saldo=@saldoInicial*@multiplicador
 				set @saldoFinal=@cantidad*@multiplicador
-				insert into transacciones (fecha, saldo_inicial, cantidad, id_usuario, id_tipoTransaccion) values (GETDATE(), @saldoInicial, @saldoFinal, @id_usuario, 3)
+				insert into transacciones (fecha, saldo_inicial, cantidad, id_usuario, id_tipoTransaccion) values (GETDATE(), @saldoInicial, @saldoFinal, @id_usuario, 4)
 				select @id_transaccion=id_transaccion from transacciones where id_usuario=@id_usuario
 				update apuestas set ganador=1, id_TransaccionC=@id_transaccion where id_usuario=@id_usuario and id_opcion=@id_opcion
 				update opciones set ganador=1 where id_evento=@id_opcion

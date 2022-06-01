@@ -147,25 +147,7 @@ namespace API_ApuestasDeportivasApp
             DataTable dt;
             dt = conexion.ejecutarConsulta(consulta);
         }
-
-        // POST ApuestaGanada
-        [HttpPost("ApuestaGanada")]
-        public void apuestaGanada(int id_evento, int id_opcion)
-        {
-            string consulta = $"exec apuestaGanada {id_evento}, {id_opcion}";
-            DataTable dt;
-            dt = conexion.ejecutarConsulta(consulta);
-        }
-
-        // POST ApuestaGanada/web
-        [HttpPost("ApuestaGanada/web")]
-        public void apuestaGanadaWeb([FromForm] int id_evento, [FromForm] int id_opcion)
-        {
-            string consulta = $"exec apuestaGanada {id_evento}, {id_opcion}";
-            DataTable dt;
-            dt = conexion.ejecutarConsulta(consulta);
-        }
-
+        
         // GET MostrarEventos
         [HttpGet("MostrarEventos")]
         public IEnumerable<evento> mostrarEventos()
@@ -223,19 +205,26 @@ namespace API_ApuestasDeportivasApp
                 ap.fecha = dt.Rows[i]["fecha"].ToString();
                 ap.cantidad = float.Parse(dt.Rows[i]["cantidad"].ToString());
                 ap.multiplicador = int.Parse(dt.Rows[i]["multiplicador"].ToString());
-                ap.ganador = bool.Parse(dt.Rows[i]["ganador"].ToString());
-                ap.id_usuario = id_usuario;
-                ap.id_opcion = int.Parse(dt.Rows[i]["id_opcion"].ToString());
-                ap.id_transaccionC = int.Parse(dt.Rows[i]["id_TransaccionC"].ToString());
                 try
                 {
-                    ap.id_transaccionP = int.Parse(dt.Rows[i]["id_TransaccionP"].ToString());
+                    ap.ganador = bool.Parse(dt.Rows[i]["ganador"].ToString());
                 }
                 catch (Exception)
                 {
-                    ap.id_transaccionP = 0;
+                    ap.ganador = false;
                 }
-                
+                ap.id_usuario = id_usuario;
+                ap.id_opcion = int.Parse(dt.Rows[i]["id_opcion"].ToString());
+                try
+                {
+                    ap.id_transaccionC = int.Parse(dt.Rows[i]["id_TransaccionC"].ToString());
+                }
+                catch (Exception)
+                {
+                    ap.id_transaccionC = 0;
+                }
+                ap.id_transaccionP = int.Parse(dt.Rows[i]["id_TransaccionP"].ToString());
+
                 lista.Add(ap);
             }
             return lista;
@@ -255,7 +244,14 @@ namespace API_ApuestasDeportivasApp
                 oe.id_opcion = int.Parse(dt.Rows[i]["id_opcion"].ToString());
                 oe.nombre = dt.Rows[i]["nombre"].ToString();
                 oe.multiplicador = int.Parse(dt.Rows[i]["multiplicador"].ToString());
-                oe.ganador = bool.Parse(dt.Rows[i]["ganador"].ToString());
+                try
+                {
+                    oe.ganador = bool.Parse(dt.Rows[i]["ganador"].ToString());
+                }
+                catch (Exception)
+                {
+                    oe.ganador = false;
+                }
                 oe.id_evento = id_evento;
                 lista.Add(oe);
             }
